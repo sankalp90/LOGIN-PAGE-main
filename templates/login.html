@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eco sphere</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <img src="{% static 'rocket.png' %}" alt="Rocket" class="rocket" />
+      <h2>Welcome Back!</h2>
+    </div>
+    <div class="right-side">
+      <div class="login-box">
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value="{{ form.username.value|default_if_none:'' }}"
+            required
+            autofocus
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          {% if form.non_field_errors %}
+            <div class="error">{{ form.non_field_errors }}</div>
+          {% endif %}
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <a href="{% url 'register' %}" class="forgot-password">Don't have an account? Register</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

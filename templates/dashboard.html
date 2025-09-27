@@ -1,22 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoSphere Dashboard</title>
 
-    <!-- Montserrat Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- ✅ Corrected static path to your CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/styles.css' %}" />
   </head>
   <body>
     <div class="grid-container">
-
       <!-- Header -->
       <header class="header">
         <div class="menu-icon" onclick="openSidebar()">
@@ -38,17 +42,19 @@
           <div class="sidebar-brand">
             <span class="material-icons-outlined">eco</span> EcoSphere
           </div>
-          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+          <span class="material-icons-outlined" onclick="closeSidebar()"
+            >close</span
+          >
         </div>
 
         <ul class="sidebar-list">
-          <li class="sidebar-list-item"><a href="dashboard.html"><span class="material-icons-outlined">dashboard</span> Dashboard</a></li>
-          <li class="sidebar-list-item"><a href="electricity.html"><span class="material-icons-outlined">flash_on</span> Electricity Usage</a></li>
-          <li class="sidebar-list-item"><a href="water.html"><span class="material-icons-outlined">water</span> Water Usage</a></li>
-          <li class="sidebar-list-item"><a href="reports.html"><span class="material-icons-outlined">poll</span> Reports</a></li>
-          <li class="sidebar-list-item"><a href="./AI-ChatBot-HTML-main/chatbot ai/index.html"><span class="material-icons-outlined">chat</span>Chat Bot</a></li>
-          <li class="sidebar-list-item"><a href="settings.html"><span class="material-icons-outlined">settings</span> Settings</a></li>
+        <li class="sidebar-list-item"><a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span> Dashboard</a></li>
+        <li class="sidebar-list-item"><a href="{% url 'electricity' %}"><span class="material-icons-outlined">flash_on</span> Electricity Usage</a></li>
+        <li class="sidebar-list-item"><a href="{% url 'water' %}"><span class="material-icons-outlined">water</span> Water Usage</a></li>
+        <li class="sidebar-list-item"><a href="{% url 'reports' %}"><span class="material-icons-outlined">poll</span> Reports</a></li>
+        <li class="sidebar-list-item"><a href="{% url 'settings' %}"><span class="material-icons-outlined">settings</span> Settings</a></li>
         </ul>
+
       </aside>
 
       <!-- Main -->
@@ -57,9 +63,7 @@
           <p class="font-weight-bold">DASHBOARD</p>
         </div>
 
-        <!-- Summary Cards -->
         <div class="main-cards">
-
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">TOTAL DEVICES</p>
@@ -91,12 +95,9 @@
             </div>
             <span class="text-primary font-weight-bold">3</span>
           </div>
-
         </div>
 
-        <!-- Charts -->
         <div class="charts">
-
           <div class="charts-card">
             <p class="chart-title">Daily Usage (kWh & Liters)</p>
             <div id="bar-chart"></div>
@@ -106,13 +107,14 @@
             <p class="chart-title">Monthly Consumption Trends</p>
             <div id="area-chart"></div>
           </div>
-
         </div>
       </main>
     </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
-    <script src="js/scripts.js"></script>
+    
+ 
+    <script src="{% static 'dashboard/scripts.js' %}"></script>
   </body>
 </html>
